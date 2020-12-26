@@ -4,12 +4,12 @@ public class Task02 {
 
     public static String solution(String input) {
 
-        long lines = Long.parseLong(input);
-        if (Byte.MIN_VALUE <= lines && lines <= Byte.MAX_VALUE)
+        long line = Long.parseLong(input);
+        if (Byte.MIN_VALUE <= line && line <= Byte.MAX_VALUE)
             return "byte";
-        if (Short.MIN_VALUE <= lines && lines <= Short.MAX_VALUE)
+        if (Short.MIN_VALUE <= line && line <= Short.MAX_VALUE)
             return "short";
-        if (Integer.MIN_VALUE <= lines && lines <= Integer.MAX_VALUE)
+        if (Integer.MIN_VALUE <= line && line <= Integer.MAX_VALUE)
             return "int";
         return "long";
     }
