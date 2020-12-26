@@ -1,7 +1,6 @@
 package com.example.task02;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Счет к оплате
@@ -9,57 +8,23 @@ import java.util.List;
 public class Bill {
     private List<BillItem> items = new ArrayList<>();
 
-    /**
-     * Добавляет товар в корзину
-     *
-     * @param item товар
-     * @param amount количество
-     */
-    public void add(Item item, int amount) {
-        boolean found = false;
-        for (BillItem billItem: items) {
-            if (billItem.item.equals(item)) {
-                found = true;
-                billItem.amount += amount;
-                break;
-            }
-        }
-        if (!found) {
-            items.add(new BillItem(item, amount));
-        }
-    }
+    public class DiscountBill extends Bill {
+        private final double discount;
 
-    /**
-     * Подсчитывает общую сумму покупки
-     *
-     * @return общую стоимость покупки
-     */
-    public long getPrice() {
-        long price = 0;
-        for (BillItem item: items) {
-            price += item.item.getPrice() * item.amount;
+        public DiscountBill(double discount) {
+            this.discount = discount;
         }
-        return price;
-    }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("Счет к оплате\n");
-        for(BillItem item : items) {
-            sb.append(item.item.getName()).append('(').append(item.amount).append(')');
-            sb.append('\n');
+        public double GetDiscount() {
+            return this.discount;
         }
-        sb.append("Сумма к оплате: ").append(getPrice());
-        return sb.toString();
-    }
 
-    private static class BillItem {
-        final Item item;
-        int amount;
+        public double EndPrice() {
+            return getPrice() - this.AbsDiscountBill();
+        }
 
-        BillItem(Item item, int amount) {
-            this.item = item;
-            this.amount = amount;
+        public double AbsDiscountBill() {
+            return getPrice() * this.discount / 100;
         }
     }
 }
