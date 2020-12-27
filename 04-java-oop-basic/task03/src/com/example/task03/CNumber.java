@@ -5,7 +5,7 @@ public class CNumber {
     private double real;
     private double imagine;
 
-    public CNumber(double real, double imagine){
+    public CNumber(double real, double imagine) {
         this.real = real;
         this.imagine = imagine;
     }
